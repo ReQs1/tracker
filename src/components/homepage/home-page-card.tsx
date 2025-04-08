@@ -1,4 +1,4 @@
-import { type HomePageCard } from "@/app/page";
+import { type HomePageCard } from "@/app/(app-layout)/page";
 
 const ICON_SIZE = 28;
 
