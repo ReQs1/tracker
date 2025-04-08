@@ -35,7 +35,7 @@ const homepageCardsContent: HomePageCard[] = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <section className="grid gap-6 bg-gradient-to-b from-white via-gray-50 to-gray-100 px-4 py-20 text-center md:gap-8">
