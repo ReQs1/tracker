@@ -36,6 +36,8 @@ const homepageCardsContent: HomePageCard[] = [
 ];
 
 export default async function Home() {
+  //TODO: adjust links when user is logged in
+
   return (
     <div>
       <section className="grid gap-6 bg-gradient-to-b from-white via-gray-50 to-gray-100 px-4 py-20 text-center md:gap-8">

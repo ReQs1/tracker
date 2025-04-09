@@ -12,19 +12,20 @@ import { authClient } from "@/lib/auth-client";
 import { Briefcase } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 function LoginPage() {
-  const router = useRouter();
+  const { replace } = useRouter();
   const { data: session } = authClient.useSession();
 
   if (session?.user) {
-    router.replace("/");
+    replace("/");
   }
 
   const signIn = async () => {
     await authClient.signIn.social({
       provider: "google",
+      callbackURL: "/dashboard",
+      errorCallbackURL: "/error",
     });
   };
 
