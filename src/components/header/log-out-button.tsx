@@ -9,6 +9,7 @@ function LogOutButton() {
   const router = useRouter();
   return (
     <DropdownMenuItem
+      asChild
       className="hover:bg-accent cursor-pointer"
       onClick={async () =>
         await authClient.signOut({
@@ -18,8 +19,10 @@ function LogOutButton() {
         })
       }
     >
-      <LogOut className="text-foreground" />
-      <span className="font-semibold">Logout</span>
+      <button className="w-full">
+        <LogOut className="text-foreground" />
+        <span className="font-semibold">Logout</span>
+      </button>
     </DropdownMenuItem>
   );
 }

@@ -24,7 +24,7 @@ async function AppHeader() {
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          className="flex items-center gap-2 focus-visible:rounded-2xl focus-visible:outline-offset-3"
         >
           <Briefcase className="text-foreground" />
           <span className="text-lg font-semibold">JobTrackr</span>
@@ -36,9 +36,9 @@ async function AppHeader() {
               {session.user.name.split(" ")[0]}
             </p>
 
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
-                <button className="cursor-pointer overflow-hidden rounded-full focus-visible:outline-offset-4 focus-visible:outline-black">
+                <button className="cursor-pointer overflow-hidden rounded-full focus-visible:outline-offset-2">
                   {session.user.image ? (
                     <Image
                       src={session.user.image}

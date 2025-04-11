@@ -1,11 +1,13 @@
 import HomePageCard from "@/components/homepage/home-page-card";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
 import {
   Briefcase,
   ChartNoAxesColumnIncreasing,
   CircleCheckBig,
   LucideIcon,
 } from "lucide-react";
+import { headers } from "next/headers";
 import Link from "next/link";
 
 export type HomePageCard = {
@@ -36,7 +38,9 @@ const homepageCardsContent: HomePageCard[] = [
 ];
 
 export default async function Home() {
-  //TODO: adjust links when user is logged in
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   return (
     <div>
@@ -50,7 +54,11 @@ export default async function Home() {
         </p>
         <div>
           <Button asChild size="lg" className="px-8 py-5">
-            <Link href="/login">Start Tracking Now</Link>
+            {session?.user ? (
+              <Link href="/dashboard">Go to Dashboard</Link>
+            ) : (
+              <Link href="/login">Start Tracking Now</Link>
+            )}
           </Button>
         </div>
       </section>
@@ -81,7 +89,11 @@ export default async function Home() {
         </p>
         <div>
           <Button asChild size="lg" className="px-8 py-5">
-            <Link href="/login">Start in with Google</Link>
+            {session?.user ? (
+              <Link href="/dashboard">Access Your Dashboard</Link>
+            ) : (
+              <Link href="/login">Start in with Google</Link>
+            )}
           </Button>
         </div>
       </section>
