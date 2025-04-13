@@ -26,18 +26,18 @@ async function OverviewContainer() {
         subParagraph="+1 from last week"
       />
       <OverviewCard
-        title="Total Applications"
+        title="Response Rate"
         Icon={ChartNoAxesColumnIncreasing}
         iconColor="#22c55e"
-        data="12"
-        subParagraph="+2 from last week"
+        data="12%"
+        subParagraph="+5% from last month"
       />
       <OverviewCard
-        title="Total Applications"
+        title="Pending"
         Icon={Loader}
         iconColor="#64748b"
         data="12"
-        subParagraph="+2 from last week"
+        subParagraph="Awaiting response"
       />
     </div>
   );
