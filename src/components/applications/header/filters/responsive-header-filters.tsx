@@ -76,7 +76,7 @@ export function DesktopFilters({
           ) : null}
         </Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent align="end">
         <StatusFilter />
         <DateFilter />
         <div className="mt-6 text-end md:text-center">
