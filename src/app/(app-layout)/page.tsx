@@ -67,7 +67,7 @@ export default async function Home() {
         <h2 className="mb-15 text-3xl font-bold text-balance">
           Everything You Need to Land Your Dream Job
         </h2>
-        <ul className="flex flex-col items-center justify-center gap-8 sm:flex-row">
+        <ul className="mx-auto grid max-w-[1200px] grid-cols-1 justify-items-center gap-8 sm:grid-cols-3">
           {homepageCardsContent.map((card, id) => (
             <HomePageCard
               key={id}

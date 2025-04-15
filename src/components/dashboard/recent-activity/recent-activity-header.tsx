@@ -8,7 +8,7 @@ function RecentActivityHeader() {
       <div>
         <h2 className="text-2xl font-semibold">Recent Activity</h2>
         <p className="text-gray-500">
-          You have X upcoming intervie(s) this week
+          View your recent applications and upcoming interviews
         </p>
       </div>
       <div>
