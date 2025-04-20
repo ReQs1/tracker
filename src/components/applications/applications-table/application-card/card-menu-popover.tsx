@@ -1,13 +1,12 @@
+import ApplicationDialogContent from "@/components/applications/applications-table/application-card/application-dialog-content";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ApplicationStatus } from "../applications-table";
-import { Button } from "@/components/ui/button";
 import { Ellipsis, Eye } from "lucide-react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import ApplicationDialogContent from "@/components/applications/applications-table/application-card/application-dialog-content";
 
 function MenuPopover({
   status,
@@ -16,7 +15,7 @@ function MenuPopover({
   position,
   notes,
 }: {
-  status: ApplicationStatus;
+  status: string;
   date: Date;
   companyName: string;
   position: string;

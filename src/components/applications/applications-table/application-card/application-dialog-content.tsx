@@ -1,6 +1,5 @@
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { cn, getStatusColor } from "@/lib/utils";
-import { ApplicationStatus } from "../applications-table";
 
 function ApplicationDialogContent({
   companyName,
@@ -11,7 +10,7 @@ function ApplicationDialogContent({
 }: {
   companyName: string;
   position: string;
-  status: ApplicationStatus;
+  status: string;
   date: Date;
   notes: string;
 }) {
