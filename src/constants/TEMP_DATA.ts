@@ -1,4 +1,4 @@
-interface JobApplication {
+export interface JobApplication {
   id: string; // Added
   companyName: string;
   position: string; // Renamed from positionTitle
