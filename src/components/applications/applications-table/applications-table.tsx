@@ -4,13 +4,9 @@ import MenuPopover from "@/components/applications/applications-table/applicatio
 import CardStatusDropdown from "@/components/applications/applications-table/application-card/card-status-dropdown";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { ITEMS_PER_PAGE } from "@/constants/constants";
 import { STATUS_OPTIONS } from "@/constants/status-options";
-
-import { db } from "@/db/drizzle";
-import { application } from "@/db/schema";
 import { auth } from "@/lib/auth";
-import { and, eq, gte, ilike, lte, or } from "drizzle-orm";
+import { getApplications } from "@/lib/fetches/get-applications";
 import { Calendar } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -37,22 +33,27 @@ async function ApplicationsTable({
   }
 
   const currentUserId = session.user.id;
-  const { query, from, to, status, page } = searchParams;
 
-  const applications = await db.query.application.findMany({
-    where: and(
-      eq(application.userId, currentUserId),
-      or(
-        ilike(application.companyName, `%${query}%`),
-        ilike(application.position, `%${query}%`),
-      ),
-      status ? eq(application.status, status) : undefined,
-      from ? gte(application.date, new Date(from)) : undefined,
-      to ? lte(application.date, new Date(to)) : undefined,
-    ),
-    limit: ITEMS_PER_PAGE,
-    offset: (page - 1) * ITEMS_PER_PAGE,
-  });
+  const applications = await getApplications(searchParams, currentUserId);
+
+  const { query, from, to, status } = searchParams;
+
+  if (applications.length === 0) {
+    if (!query && !from && !to && !status) {
+      return (
+        <p className="text-center text-gray-500">
+          No applications found. Add a new application to start tracking!
+        </p>
+      );
+    } else {
+      return (
+        <p className="text-center text-gray-500">
+          No applications match the current filters. Try adjusting your search
+          criteria.
+        </p>
+      );
+    }
+  }
 
   return (
     <div className="space-y-6">

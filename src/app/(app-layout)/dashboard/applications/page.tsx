@@ -3,8 +3,6 @@ import ApplicationsHeader from "@/components/applications/header/applications-he
 import DashboardWrapper from "@/components/ui/dashboard-wrapper";
 import { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
-
 async function ApplicationsPage(props: {
   searchParams: Promise<{
     query?: string;
@@ -14,12 +12,13 @@ async function ApplicationsPage(props: {
     page?: string;
   }>;
 }) {
-  const searchParams = await props.searchParams;
-  const query = searchParams?.query || "";
-  const from = searchParams?.from || "";
-  const to = searchParams?.to || "";
-  const status = searchParams?.status || "";
-  const page = Number(searchParams?.page) || 1;
+  const {
+    query = "",
+    from = "",
+    to = "",
+    status = "",
+  } = await props.searchParams;
+  const page = Number((await props.searchParams).page) || 1;
 
   return (
     <DashboardWrapper className="space-y-4">
