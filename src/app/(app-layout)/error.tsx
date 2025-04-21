@@ -14,8 +14,7 @@ export default function Error({
           Oops! Something went wrong.
         </h1>
         <p className="text-muted-foreground md:text-xl">
-          {/* We encountered an unexpected error. Please try again. */}
-          {error.message}
+          We encountered an unexpected error. Please try again.
         </p>
         {error?.digest && (
           <p className="text-muted-foreground text-sm">
