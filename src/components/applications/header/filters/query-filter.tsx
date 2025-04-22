@@ -27,7 +27,7 @@ function QueryFilter() {
 
   return (
     <div className="flex grow items-center justify-between rounded-sm border px-4 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-black">
-      <div className="flex grow items-center gap-2">
+      <div className="flex grow items-center gap-2 py-1">
         <Search color="gray" size={18} />
         <input
           placeholder="Search companies or positions..."
