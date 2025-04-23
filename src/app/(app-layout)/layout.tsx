@@ -1,5 +1,6 @@
 import AppFooter from "@/components/app-footer";
 import AppHeader from "@/components/app-header";
+import { Toaster } from "react-hot-toast";
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
       <AppHeader />
       <main className="flex grow flex-col">{children}</main>
       <AppFooter />
+      <Toaster />
     </>
   );
 }

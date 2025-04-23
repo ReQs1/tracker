@@ -27,6 +27,6 @@ export async function getApplications(
     ),
     limit: ITEMS_PER_PAGE,
     offset: (page - 1) * ITEMS_PER_PAGE,
-    orderBy: [desc(application.date)],
+    orderBy: [desc(application.date), desc(application.id)],
   });
 }

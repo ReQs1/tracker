@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -10,10 +11,17 @@ import {
 
 import { Plus } from "lucide-react";
 import AddApplicationModalContent from "@/components/applications/add-application-modal/add-application-modal-content";
+import { useState } from "react";
 
 function AddApplicationModal() {
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button
           className="inline-flex cursor-pointer items-center gap-4 self-start md:self-auto"
@@ -33,7 +41,7 @@ function AddApplicationModal() {
           </DialogDescription>
         </DialogHeader>
 
-        <AddApplicationModalContent />
+        <AddApplicationModalContent onModalClose={handleClose} />
       </DialogContent>
     </Dialog>
   );

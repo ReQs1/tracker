@@ -66,7 +66,7 @@ async function ApplicationsTable({
             />
             <MenuPopover
               status={appl.status}
-              date={appl.date}
+              date={new Date(appl.date)}
               companyName={appl.companyName}
               position={appl.position}
               notes={appl.notes}
@@ -76,7 +76,7 @@ async function ApplicationsTable({
             <div className="flex items-center justify-between">
               <p className="inline-flex items-center gap-2 text-sm">
                 <Calendar size={16} color="gray" />{" "}
-                {appl.date.toLocaleDateString("en-GB")}
+                {new Date(appl.date).toLocaleDateString("en-GB")}
               </p>
               <CardStatusDropdown appl={appl} />
             </div>
@@ -92,7 +92,7 @@ async function ApplicationsTable({
                   companyName={appl.companyName}
                   position={appl.position}
                   status={appl.status}
-                  date={appl.date}
+                  date={new Date(appl.date)}
                   notes={appl.notes}
                 />
               </DialogContent>

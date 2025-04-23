@@ -1,11 +1,18 @@
-import { boolean, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  date,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
 
 export const application = pgTable("application", {
   id: serial("id").primaryKey(),
   companyName: text("company_name").notNull(),
   position: text("position").notNull(),
   status: text("status").notNull(),
-  date: timestamp("date").notNull().defaultNow(),
+  date: date("date").notNull().defaultNow(),
   notes: text("notes").notNull(),
   userId: text("user_id")
     .notNull()
