@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { Plus } from "lucide-react";
-import AddModalContent from "@/components/applications/add-application-modal/add-application-modal-content";
+import AddApplicationModalContent from "@/components/applications/add-application-modal/add-application-modal-content";
 
 function AddApplicationModal() {
   return (
@@ -33,7 +33,7 @@ function AddApplicationModal() {
           </DialogDescription>
         </DialogHeader>
 
-        <AddModalContent />
+        <AddApplicationModalContent />
       </DialogContent>
     </Dialog>
   );
