@@ -16,7 +16,7 @@ import { useZsaAction } from "@/hooks/use-zsa-action";
 import { addApplicationAction } from "@/lib/zsa/actions";
 import { ApplicationFormValues, applicationsSchema } from "@/lib/zsa/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 export default function AddApplicationModalContent({
   onModalClose,
@@ -27,6 +27,7 @@ export default function AddApplicationModalContent({
     register,
     handleSubmit,
     formState: { errors },
+    control,
   } = useForm<ApplicationFormValues>({
     resolver: zodResolver(applicationsSchema),
     defaultValues: {
@@ -67,19 +68,26 @@ export default function AddApplicationModalContent({
 
       <InputWrapper>
         <Label htmlFor="status">Status</Label>
-        <Select {...register("status")} defaultValue="applied">
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select status" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="applied">Applied</SelectItem>
-              <SelectItem value="interview">Interview</SelectItem>
-              <SelectItem value="offer">Offer</SelectItem>
-              <SelectItem value="rejected">Rejected</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <Controller
+          name="status"
+          control={control}
+          render={({ field }) => (
+            <Select onValueChange={field.onChange} value={field.value}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="applied">Applied</SelectItem>
+                  <SelectItem value="interview">Interview</SelectItem>
+                  <SelectItem value="offer">Offer</SelectItem>
+                  <SelectItem value="rejected">Rejected</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          )}
+        />
+
         {errors.status?.message && (
           <p className="text-red-400">{errors.status.message}</p>
         )}
