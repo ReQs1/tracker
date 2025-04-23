@@ -1,2 +1,0 @@
-CREATE TYPE "public"."application_status" AS ENUM('applied', 'rejected', 'offer', 'interview');--> statement-breakpoint
-ALTER TABLE "application" ALTER COLUMN "status" SET DATA TYPE application_status;
