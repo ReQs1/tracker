@@ -5,7 +5,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <AppHeader />
-      <main className="grow">{children}</main>
+      <main className="flex grow flex-col">{children}</main>
       <AppFooter />
     </>
   );

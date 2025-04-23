@@ -11,7 +11,7 @@ type Props = {
   totalPages: number;
 };
 
-function PaginationContainer({
+function ApplicationsPaginationContainer({
   currentPage,
   totalApplications,
   totalPages,
@@ -68,4 +68,4 @@ function PaginationContainer({
   );
 }
 
-export default PaginationContainer;
+export default ApplicationsPaginationContainer;

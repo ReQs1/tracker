@@ -56,7 +56,7 @@ async function ApplicationsTable({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="grow space-y-6">
       {applications.map((appl) => (
         <Card key={appl.id}>
           <CardHeader className="flex justify-between border-b px-4 [.border-b]:pb-4">

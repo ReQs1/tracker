@@ -1,6 +1,6 @@
 import ApplicationsTable from "@/components/applications/applications-table/applications-table";
 import ApplicationsHeader from "@/components/applications/header/applications-header";
-import PaginationContainer from "@/components/applications/pagination/pagination-container";
+import ApplicationsPaginationContainer from "@/components/applications/pagination/applications-pagination-container";
 import DashboardWrapper from "@/components/ui/dashboard-wrapper";
 import { ITEMS_PER_PAGE } from "@/constants/constants";
 import { db } from "@/db/drizzle";
@@ -47,12 +47,12 @@ async function ApplicationsPage(props: {
   const totalPages = Math.ceil(totalApplications / ITEMS_PER_PAGE);
 
   return (
-    <DashboardWrapper className="space-y-4">
+    <DashboardWrapper className="flex grow flex-col space-y-4">
       <ApplicationsHeader />
       <Suspense
         key={query + from + to + status + page}
         fallback={
-          <div className="flex h-64 items-center justify-center">
+          <div className="flex grow items-center justify-center">
             <div className="border-primary h-16 w-16 animate-spin rounded-full border-t-2 border-b-2"></div>
           </div>
         }
@@ -60,7 +60,7 @@ async function ApplicationsPage(props: {
         <ApplicationsTable searchParams={{ query, from, to, status, page }} />
       </Suspense>
 
-      <PaginationContainer
+      <ApplicationsPaginationContainer
         totalPages={totalPages}
         currentPage={page}
         totalApplications={totalApplications}

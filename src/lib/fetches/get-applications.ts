@@ -14,7 +14,6 @@ export async function getApplications(
   currentUserId: string,
 ) {
   const { query, from, to, status, page } = searchParams;
-
   return await db.query.application.findMany({
     where: and(
       eq(application.userId, currentUserId),
