@@ -12,16 +12,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useZsaAction } from "@/hooks/use-zsa-action";
-import { addApplicationAction } from "@/lib/zsa/actions";
 import { ApplicationFormValues, applicationsSchema } from "@/lib/zsa/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { ApplicationStatus } from "../applications-table/applications-table";
 
-export default function AddApplicationModalContent({
-  onModalClose,
+export default function ApplicationFormContent({
+  execute,
+  isPending,
+  defaultValues,
 }: {
-  onModalClose: () => void;
+  execute: any;
+  isPending: boolean;
+  defaultValues: {
+    companyName: string;
+    position: string;
+    status: ApplicationStatus;
+    date: string;
+    notes: string;
+  };
 }) {
   const {
     register,
@@ -31,18 +40,12 @@ export default function AddApplicationModalContent({
   } = useForm<ApplicationFormValues>({
     resolver: zodResolver(applicationsSchema),
     defaultValues: {
-      companyName: "",
-      position: "",
-      status: "applied",
-      date: new Date().toISOString().split("T")[0],
-      notes: "",
+      companyName: defaultValues.companyName,
+      position: defaultValues.position,
+      status: defaultValues.status,
+      date: defaultValues.date,
+      notes: defaultValues.notes,
     },
-  });
-
-  const { execute, isPending } = useZsaAction({
-    fn: addApplicationAction,
-    closeModalFn: onModalClose,
-    errorToastMessage: "Sorry, couldn't add your application",
   });
 
   return (

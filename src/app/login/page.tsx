@@ -32,7 +32,11 @@ function LoginPage() {
   return (
     <main className="grid h-dvh place-content-center gap-6 px-3">
       <div className="text-center">
-        <Link href="/" className="inline-flex items-center gap-2">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2"
+          aria-label="Navigate to home page"
+        >
           <Briefcase size={28} />
           <span className="text-2xl font-bold">JobTrackr</span>
         </Link>

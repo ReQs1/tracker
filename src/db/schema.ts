@@ -1,3 +1,4 @@
+import { InferSelectModel } from "drizzle-orm";
 import {
   boolean,
   date,
@@ -18,6 +19,8 @@ export const application = pgTable("application", {
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
 });
+
+export type Application = InferSelectModel<typeof application>;
 
 // better auth tables
 

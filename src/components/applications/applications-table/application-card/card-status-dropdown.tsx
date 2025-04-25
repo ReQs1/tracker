@@ -7,10 +7,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { STATUS_OPTIONS } from "@/constants/status-options";
-import { JobApplication } from "@/constants/TEMP_DATA";
 import { cn, getStatusColor } from "@/lib/utils";
+import { type Application } from "@/db/schema";
 
-function CardStatusDropdown({ appl }: { appl: JobApplication }) {
+function CardStatusDropdown({ appl }: { appl: Application }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

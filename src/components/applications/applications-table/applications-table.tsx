@@ -9,7 +9,6 @@ import { auth } from "@/lib/auth";
 import { getApplications } from "@/lib/fetches/get-applications";
 import { Calendar } from "lucide-react";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
 
 export type ApplicationStatus = (typeof STATUS_OPTIONS)[number];
 
@@ -28,11 +27,7 @@ async function ApplicationsTable({
     headers: await headers(),
   });
 
-  if (!session?.user) {
-    redirect("/login");
-  }
-
-  const currentUserId = session.user.id;
+  const currentUserId = session!.user.id;
 
   const applications = await getApplications(searchParams, currentUserId);
 

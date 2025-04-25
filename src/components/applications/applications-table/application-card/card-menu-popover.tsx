@@ -24,7 +24,12 @@ function MenuPopover({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="cursor-pointer" variant="ghost" size="icon">
+        <Button
+          className="cursor-pointer"
+          variant="ghost"
+          size="icon"
+          aria-label="Open menu popover"
+        >
           <Ellipsis />
         </Button>
       </PopoverTrigger>

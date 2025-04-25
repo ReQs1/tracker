@@ -10,8 +10,10 @@ import {
 } from "@/components/ui/dialog";
 
 import { Plus } from "lucide-react";
-import AddApplicationModalContent from "@/components/applications/add-application-modal/add-application-modal-content";
+import ApplicationFormContent from "@/components/applications/application-form-content/application-form-content";
 import { useState } from "react";
+import { useZsaAction } from "@/hooks/use-zsa-action";
+import { addApplicationAction } from "@/lib/zsa/actions";
 
 function AddApplicationModal() {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,12 @@ function AddApplicationModal() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const { execute, isPending } = useZsaAction({
+    fn: addApplicationAction,
+    closeModalFn: handleClose,
+    errorToastMessage: "Sorry, couldn't add your application",
+  });
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -41,7 +49,17 @@ function AddApplicationModal() {
           </DialogDescription>
         </DialogHeader>
 
-        <AddApplicationModalContent onModalClose={handleClose} />
+        <ApplicationFormContent
+          execute={execute}
+          isPending={isPending}
+          defaultValues={{
+            companyName: "",
+            position: "",
+            status: "applied",
+            date: new Date().toISOString().split("T")[0],
+            notes: "",
+          }}
+        />
       </DialogContent>
     </Dialog>
   );
