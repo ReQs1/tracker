@@ -65,6 +65,7 @@ async function ApplicationsTable({
               companyName={appl.companyName}
               position={appl.position}
               notes={appl.notes}
+              noteId={appl.id}
             />
           </CardHeader>
           <CardContent className="space-y-2">

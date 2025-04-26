@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-export const applicationsSchema = z.object({
+export const applicationSchema = z.object({
+  noteId: z.number().optional(),
   companyName: z.string().nonempty("Company name is required"),
   position: z.string().nonempty("Position is required"),
   status: z.enum(["applied", "interview", "offer", "rejected"]),
@@ -8,4 +9,4 @@ export const applicationsSchema = z.object({
   notes: z.string().nonempty("Notes are required"),
 });
 
-export type ApplicationFormValues = z.infer<typeof applicationsSchema>;
+export type ApplicationFormValues = z.infer<typeof applicationSchema>;

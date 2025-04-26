@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { ApplicationFormValues, applicationsSchema } from "@/lib/zsa/schemas";
+import { ApplicationFormValues, applicationSchema } from "@/lib/zsa/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { ApplicationStatus } from "../applications-table/applications-table";
@@ -21,9 +21,11 @@ export default function ApplicationFormContent({
   execute,
   isPending,
   defaultValues,
+  noteId,
 }: {
   execute: any;
   isPending: boolean;
+  noteId?: number;
   defaultValues: {
     companyName: string;
     position: string;
@@ -38,7 +40,7 @@ export default function ApplicationFormContent({
     formState: { errors },
     control,
   } = useForm<ApplicationFormValues>({
-    resolver: zodResolver(applicationsSchema),
+    resolver: zodResolver(applicationSchema),
     defaultValues: {
       companyName: defaultValues.companyName,
       position: defaultValues.position,
@@ -51,7 +53,7 @@ export default function ApplicationFormContent({
   return (
     <form
       className="grid gap-4"
-      onSubmit={handleSubmit((values) => execute(values))}
+      onSubmit={handleSubmit((values) => execute({ ...values, noteId }))}
     >
       <InputWrapper>
         <Label htmlFor="company-name">Company Name</Label>

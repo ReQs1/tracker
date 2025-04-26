@@ -1,12 +1,14 @@
-import ApplicationDialogContent from "@/components/applications/applications-table/application-card/application-dialog-content";
+import { ApplicationStatus } from "@/components/applications/applications-table/applications-table";
+import DeleteApplicationModal from "@/components/applications/delete-applcation-modal/delete-application-modal";
+import EditApplicationModal from "@/components/applications/edit-application-modal/edit-applicatin-modal";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Ellipsis, Eye } from "lucide-react";
+import { Ellipsis } from "lucide-react";
+import ApplicationDetailsModal from "../../application-details-modal/application-deitals-modal";
 
 function MenuPopover({
   status,
@@ -14,13 +16,17 @@ function MenuPopover({
   companyName,
   position,
   notes,
+  noteId,
 }: {
   status: string;
   date: Date;
   companyName: string;
   position: string;
   notes: string;
+  noteId: number;
 }) {
+  // TODO: on children click close the popover
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -33,24 +39,29 @@ function MenuPopover({
           <Ellipsis />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="end" className="w-auto p-0">
+      <PopoverContent
+        align="end"
+        className="flex w-fit flex-col items-start p-0"
+      >
         {/* APPLICATION DETAILS */}
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="cursor-pointer" variant="ghost">
-              <Eye size={16} /> <span>View Details</span>
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <ApplicationDialogContent
-              companyName={companyName}
-              position={position}
-              status={status}
-              date={date}
-              notes={notes}
-            />
-          </DialogContent>
-        </Dialog>
+        <ApplicationDetailsModal
+          companyName={companyName}
+          position={position}
+          status={status}
+          date={date}
+          notes={notes}
+        />
+        {/* EDIT MODAL */}
+        <EditApplicationModal
+          companyName={companyName}
+          position={position}
+          status={status as ApplicationStatus}
+          date={date}
+          notes={notes}
+          noteId={noteId}
+        />
+        {/* DELETE MODAL*/}
+        <DeleteApplicationModal appl={{ companyName, position, noteId }} />
       </PopoverContent>
     </Popover>
   );

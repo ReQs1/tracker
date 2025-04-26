@@ -25,7 +25,7 @@ function AddApplicationModal() {
   const { execute, isPending } = useZsaAction({
     fn: addApplicationAction,
     closeModalFn: handleClose,
-    errorToastMessage: "Sorry, couldn't add your application",
+    errorToastMessage: "Sorry, couldn't add the application",
   });
 
   return (
