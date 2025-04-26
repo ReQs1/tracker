@@ -8,9 +8,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Ellipsis } from "lucide-react";
-import ApplicationDetailsModal from "../../application-details-modal/application-deitals-modal";
+import ApplicationDetailsModal from "../../application-details-modal/application-details-modal";
 
-function MenuPopover({
+function CardMenuPopover({
   status,
   date,
   companyName,
@@ -25,8 +25,6 @@ function MenuPopover({
   notes: string;
   noteId: number;
 }) {
-  // TODO: on children click close the popover
-
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -67,4 +65,4 @@ function MenuPopover({
   );
 }
 
-export default MenuPopover;
+export default CardMenuPopover;

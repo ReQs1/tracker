@@ -1,12 +1,18 @@
 import CardHeaderContent from "@/components/applications/applications-table/application-card/application-card-header";
-import ApplicationDialogContent from "@/components/applications/applications-table/application-card/application-dialog-content";
-import MenuPopover from "@/components/applications/applications-table/application-card/card-menu-popover";
+import CardMenuPopover from "@/components/applications/applications-table/application-card/card-menu-popover";
 import CardStatusDropdown from "@/components/applications/applications-table/application-card/card-status-dropdown";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { STATUS_OPTIONS } from "@/constants/status-options";
 import { auth } from "@/lib/auth";
 import { getApplications } from "@/lib/fetches/get-applications";
+import { cn, getStatusColor } from "@/lib/utils";
 import { Calendar } from "lucide-react";
 import { headers } from "next/headers";
 
@@ -59,7 +65,7 @@ async function ApplicationsTable({
               companyName={appl.companyName}
               position={appl.position}
             />
-            <MenuPopover
+            <CardMenuPopover
               status={appl.status}
               date={new Date(appl.date)}
               companyName={appl.companyName}
@@ -84,13 +90,42 @@ async function ApplicationsTable({
                 </button>
               </DialogTrigger>
               <DialogContent>
-                <ApplicationDialogContent
-                  companyName={appl.companyName}
-                  position={appl.position}
-                  status={appl.status}
-                  date={new Date(appl.date)}
-                  notes={appl.notes}
-                />
+                <DialogHeader>
+                  <DialogTitle>Application Details</DialogTitle>
+                </DialogHeader>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <p className="text-sm text-gray-500">Company</p>
+                    <p className="text-lg font-semibold">{appl.companyName}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Position</p>
+                    <p className="text-lg">{appl.position}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Status</p>
+                    <p
+                      className={cn(
+                        "inline-flex items-center justify-center rounded-full px-3 py-0.5 text-xs font-semibold text-white transition-colors",
+                        getStatusColor(appl.status),
+                      )}
+                    >
+                      {appl.status.charAt(0).toUpperCase() +
+                        appl.status.slice(1)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Date</p>
+                    <p>{new Date(appl.date).toLocaleDateString("en-GB")}</p>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <p className="mb-2 text-sm text-gray-500">Notes</p>
+                    <p className="rounded-lg bg-gray-100 p-4 text-sm">
+                      {appl.notes}
+                    </p>
+                  </div>
+                </div>
               </DialogContent>
             </Dialog>
           </CardContent>
