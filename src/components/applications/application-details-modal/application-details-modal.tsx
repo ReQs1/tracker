@@ -1,13 +1,10 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn, getStatusColor } from "@/lib/utils";
-import { Eye } from "lucide-react";
 
 function ApplicationDetailsModal({
   companyName,
@@ -15,20 +12,19 @@ function ApplicationDetailsModal({
   status,
   date,
   notes,
+  isOpen,
+  onOpenChange,
 }: {
   companyName: string;
   position: string;
   status: string;
   date: Date;
   notes: string;
+  isOpen: boolean;
+  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="cursor-pointer" variant="ghost">
-          <Eye size={16} /> <span>View Details</span>
-        </Button>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Application Details</DialogTitle>

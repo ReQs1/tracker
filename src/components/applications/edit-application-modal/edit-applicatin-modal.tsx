@@ -1,20 +1,17 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Pen } from "lucide-react";
+import { useZsaAction } from "@/hooks/use-zsa-action";
+import { editApplicationAction } from "@/lib/zsa/actions";
+import React from "react";
 import ApplicationFormContent from "../application-form-content/application-form-content";
 import { ApplicationStatus } from "../applications-table/applications-table";
-import { useZsaAction } from "@/hooks/use-zsa-action";
-import { useState } from "react";
-import { editApplicationAction } from "@/lib/zsa/actions";
 
 type Props = {
   companyName: string;
@@ -24,6 +21,8 @@ type Props = {
   date: Date;
   notes: string;
   noteId: number;
+  isOpen: boolean;
+  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function EditApplicationModal({
@@ -33,11 +32,11 @@ function EditApplicationModal({
   date,
   notes,
   noteId,
+  isOpen,
+  onOpenChange,
 }: Props) {
-  const [open, setOpen] = useState(false);
-
   const handleClose = () => {
-    setOpen(false);
+    onOpenChange(false);
   };
 
   const { execute, isPending } = useZsaAction({
@@ -47,12 +46,7 @@ function EditApplicationModal({
   });
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="w-full cursor-pointer justify-start" variant="ghost">
-          <Pen size={16} /> <span>Edit</span>
-        </Button>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader className="text-left">
           <DialogTitle className="text-lg">Edit Application</DialogTitle>

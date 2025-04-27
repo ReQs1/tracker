@@ -14,3 +14,10 @@ WiP
 ## overview
 
 nothing here yet
+
+## future
+
+- [ X ] fix card-menu-popover to close on child click
+
+1. https://github.com/shadcn-ui/ui/issues/2497
+2. https://stackoverflow.com/questions/77185827/shadcn-dialog-inside-of-dropdown-closes-automatically

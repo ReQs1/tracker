@@ -7,27 +7,26 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Spinner } from "@/components/ui/spinner";
 import { useZsaAction } from "@/hooks/use-zsa-action";
 import { deleteApplicationAction } from "@/lib/zsa/actions";
-import { Trash } from "lucide-react";
-import { useState } from "react";
 
 function DeleteApplicationModal({
   appl,
+  isOpen,
+  onOpenChange,
 }: {
   appl: {
     companyName: string;
     position: string;
     noteId: number;
   };
+  isOpen: boolean;
+  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [open, setOpen] = useState(false);
-
   const handleClose = () => {
-    setOpen(false);
+    onOpenChange(false);
   };
 
   const { execute, isPending } = useZsaAction({
@@ -37,15 +36,7 @@ function DeleteApplicationModal({
   });
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className="w-full cursor-pointer justify-start border-0 text-red-500 hover:text-red-500"
-        >
-          <Trash size={16} /> <span>Delete</span>
-        </Button>
-      </DialogTrigger>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Confirm Deletion</DialogTitle>

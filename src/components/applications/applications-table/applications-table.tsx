@@ -1,5 +1,5 @@
 import CardHeaderContent from "@/components/applications/applications-table/application-card/application-card-header";
-import CardMenuPopover from "@/components/applications/applications-table/application-card/card-menu-popover";
+import CardMenuDropdown from "@/components/applications/applications-table/application-card/card-menu-dropdown";
 import CardStatusDropdown from "@/components/applications/applications-table/application-card/card-status-dropdown";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -65,7 +65,7 @@ async function ApplicationsTable({
               companyName={appl.companyName}
               position={appl.position}
             />
-            <CardMenuPopover
+            <CardMenuDropdown
               status={appl.status}
               date={new Date(appl.date)}
               companyName={appl.companyName}
