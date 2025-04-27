@@ -12,22 +12,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Ellipsis, Eye, Pen, Trash } from "lucide-react";
 import { useState } from "react";
-import ApplicationDetailsModal from "../../application-details-modal/application-details-modal";
+import ApplicationDetailsModal from "@/components/applications/application-details-modal/application-details-modal";
 
-function CardMenuDropdown({
+function MenuDropdown({
   status,
   date,
   companyName,
   position,
   notes,
-  noteId,
+  applicationId,
 }: {
   status: string;
   date: Date;
   companyName: string;
   position: string;
   notes: string;
-  noteId: number;
+  applicationId: number;
 }) {
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -107,7 +107,7 @@ function CardMenuDropdown({
           status={status as ApplicationStatus}
           date={date}
           notes={notes}
-          noteId={noteId}
+          applicationId={applicationId}
           isOpen={isEditModalOpen}
           onOpenChange={setIsEditModalOpen}
         />
@@ -115,7 +115,7 @@ function CardMenuDropdown({
 
       {isDeleteModalOpen && (
         <DeleteApplicationModal
-          appl={{ companyName, position, noteId }}
+          appl={{ companyName, position, applicationId }}
           isOpen={isDeleteModalOpen}
           onOpenChange={setIsDeleteModalOpen}
         />
@@ -124,4 +124,4 @@ function CardMenuDropdown({
   );
 }
 
-export default CardMenuDropdown;
+export default MenuDropdown;

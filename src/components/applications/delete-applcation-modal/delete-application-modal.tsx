@@ -20,7 +20,7 @@ function DeleteApplicationModal({
   appl: {
     companyName: string;
     position: string;
-    noteId: number;
+    applicationId: number;
   };
   isOpen: boolean;
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
@@ -56,7 +56,7 @@ function DeleteApplicationModal({
             className="min-w-24 cursor-pointer bg-red-400 transition-colors hover:bg-red-600"
             size="lg"
             disabled={isPending}
-            onClick={() => execute({ noteId: appl.noteId })}
+            onClick={() => execute({ applicationId: appl.applicationId })}
           >
             {isPending ? <Spinner className="h-4 w-4" /> : "Delete"}
           </Button>

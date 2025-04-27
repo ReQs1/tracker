@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const applicationSchema = z.object({
-  noteId: z.number().optional(),
+  applicationId: z.number().optional(),
   companyName: z.string().nonempty("Company name is required"),
   position: z.string().nonempty("Position is required"),
   status: z.enum(["applied", "interview", "offer", "rejected"]),

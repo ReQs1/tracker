@@ -14,7 +14,7 @@ import { editApplicationStatusAction } from "@/lib/zsa/actions";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 
-function CardStatusDropdown({ appl }: { appl: Application }) {
+function StatusDropdown({ appl }: { appl: Application }) {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -52,7 +52,7 @@ function CardStatusDropdown({ appl }: { appl: Application }) {
             className={cn("cursor-pointer", {
               ["font-bold"]: appl.status === status,
             })}
-            onClick={() => execute({ status, noteId: appl.id })}
+            onClick={() => execute({ status, applicationId: appl.id })}
           >
             {status}
           </DropdownMenuItem>
@@ -62,4 +62,4 @@ function CardStatusDropdown({ appl }: { appl: Application }) {
   );
 }
 
-export default CardStatusDropdown;
+export default StatusDropdown;

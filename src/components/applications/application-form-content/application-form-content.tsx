@@ -21,11 +21,11 @@ export default function ApplicationFormContent({
   execute,
   isPending,
   defaultValues,
-  noteId,
+  applicationId,
 }: {
   execute: any;
   isPending: boolean;
-  noteId?: number;
+  applicationId?: number;
   defaultValues: {
     companyName: string;
     position: string;
@@ -53,7 +53,7 @@ export default function ApplicationFormContent({
   return (
     <form
       className="grid gap-4"
-      onSubmit={handleSubmit((values) => execute({ ...values, noteId }))}
+      onSubmit={handleSubmit((values) => execute({ ...values, applicationId }))}
     >
       <InputWrapper>
         <Label htmlFor="company-name">Company Name</Label>

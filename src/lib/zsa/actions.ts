@@ -35,7 +35,7 @@ export const editApplicationAction = authedProcedure
     const userId = ctx.user.id;
 
     const usersNote = await db.query.application.findFirst({
-      where: eq(application.id, input.noteId!),
+      where: eq(application.id, input.applicationId!),
     });
 
     if (!usersNote) {
@@ -55,7 +55,7 @@ export const editApplicationAction = authedProcedure
         date,
         notes,
       })
-      .where(eq(application.id, input.noteId!));
+      .where(eq(application.id, input.applicationId!));
 
     revalidatePath("/dashboard/applications");
   });
@@ -64,7 +64,7 @@ export const editApplicationStatusAction = authedProcedure
   .createServerAction()
   .input(
     z.object({
-      noteId: z.number(),
+      applicationId: z.number(),
       status: z.enum(["applied", "interview", "offer", "rejected"]),
     }),
   )
@@ -72,7 +72,7 @@ export const editApplicationStatusAction = authedProcedure
     const userId = ctx.user.id;
 
     const usersNote = await db.query.application.findFirst({
-      where: eq(application.id, input.noteId),
+      where: eq(application.id, input.applicationId),
     });
 
     if (!usersNote) {
@@ -88,7 +88,7 @@ export const editApplicationStatusAction = authedProcedure
       .set({
         status: input.status,
       })
-      .where(eq(application.id, input.noteId));
+      .where(eq(application.id, input.applicationId));
 
     revalidatePath("/dashboard/applications");
   });
@@ -97,14 +97,14 @@ export const deleteApplicationAction = authedProcedure
   .createServerAction()
   .input(
     z.object({
-      noteId: z.number(),
+      applicationId: z.number(),
     }),
   )
   .handler(async ({ input, ctx }) => {
     const userId = ctx.user.id;
 
     const usersNote = await db.query.application.findFirst({
-      where: eq(application.id, input.noteId!),
+      where: eq(application.id, input.applicationId),
     });
 
     if (!usersNote) {
@@ -115,7 +115,7 @@ export const deleteApplicationAction = authedProcedure
       throw new Error("You do not have permission to delete this note.");
     }
 
-    await db.delete(application).where(eq(application.id, input.noteId));
+    await db.delete(application).where(eq(application.id, input.applicationId));
 
     revalidatePath("/dashboard/applications");
   });

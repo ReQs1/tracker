@@ -20,7 +20,7 @@ type Props = {
   status: ApplicationStatus;
   date: Date;
   notes: string;
-  noteId: number;
+  applicationId: number;
   isOpen: boolean;
   onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -31,7 +31,7 @@ function EditApplicationModal({
   status,
   date,
   notes,
-  noteId,
+  applicationId,
   isOpen,
   onOpenChange,
 }: Props) {
@@ -64,7 +64,7 @@ function EditApplicationModal({
             date: date.toISOString().split("T")[0],
             notes: notes,
           }}
-          noteId={noteId}
+          applicationId={applicationId}
         />
       </DialogContent>
     </Dialog>
