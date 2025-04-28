@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import React from "react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -18,4 +19,26 @@ export const getStatusColor = (status: string) => {
     default:
       throw new Error("wrong status as a function argument");
   }
+};
+
+export const renderTextWithLinks = (text: string) => {
+  const urlRegex = /(https?:\/\/\S+)/g;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (part.match(urlRegex)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noreferrer "
+          className="break-all text-blue-600 hover:underline"
+        >
+          {part}
+        </a>
+      );
+    }
+    return <React.Fragment key={index}>{part}</React.Fragment>;
+  });
 };

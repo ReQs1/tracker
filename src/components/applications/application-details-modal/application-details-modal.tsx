@@ -4,7 +4,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { cn, getStatusColor } from "@/lib/utils";
+import { cn, getStatusColor, renderTextWithLinks } from "@/lib/utils";
 
 function ApplicationDetailsModal({
   companyName,
@@ -56,7 +56,9 @@ function ApplicationDetailsModal({
 
           <div className="md:col-span-2">
             <p className="mb-2 text-sm text-gray-500">Notes</p>
-            <p className="rounded-lg bg-gray-100 p-4 text-sm">{notes}</p>
+            <p className="rounded-lg bg-gray-100 p-4 text-sm">
+              {renderTextWithLinks(notes)}
+            </p>
           </div>
         </div>
       </DialogContent>

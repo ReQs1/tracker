@@ -10,7 +10,7 @@ function ApplicationsTableComponents({
 }: {
   applications: Application[];
 }) {
-  const isMobile = useMatchMedia("(max-width: 768px)");
+  const isMobile = useMatchMedia("(max-width: 767px)");
 
   if (isMobile)
     return (

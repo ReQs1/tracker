@@ -43,8 +43,8 @@ function ApplicationsTableView({
               <TableCell className="p-4">
                 {new Date(appl.date).toLocaleDateString("en-GB")}
               </TableCell>
-              <TableCell className="p-4">
-                {appl.notes.slice(0, 15) + "..."}
+              <TableCell className="max-w-xs overflow-hidden p-4 text-ellipsis whitespace-nowrap">
+                {appl.notes}
               </TableCell>
               <TableCell className="p-4">
                 <MenuDropdown

@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { cn, getStatusColor } from "@/lib/utils";
+import { cn, getStatusColor, renderTextWithLinks } from "@/lib/utils";
 import { Application } from "@/db/schema";
 
 function ApplicationCard({ appl }: { appl: Application }) {
@@ -38,7 +38,9 @@ function ApplicationCard({ appl }: { appl: Application }) {
           </p>
           <StatusDropdown appl={appl} />
         </div>
-        <p className="line-clamp-2 text-sm text-gray-500">{appl.notes}</p>
+        <p className="line-clamp-2 text-sm text-gray-500">
+          {renderTextWithLinks(appl.notes)}
+        </p>
         <Dialog>
           <DialogTrigger asChild>
             <button className="cursor-pointer rounded-sm p-1 text-sm transition-colors hover:bg-gray-100">
@@ -77,7 +79,7 @@ function ApplicationCard({ appl }: { appl: Application }) {
               <div className="md:col-span-2">
                 <p className="mb-2 text-sm text-gray-500">Notes</p>
                 <p className="rounded-lg bg-gray-100 p-4 text-sm">
-                  {appl.notes}
+                  {renderTextWithLinks(appl.notes)}
                 </p>
               </div>
             </div>
