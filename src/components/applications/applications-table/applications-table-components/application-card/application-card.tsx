@@ -38,7 +38,7 @@ function ApplicationCard({ appl }: { appl: Application }) {
           </p>
           <StatusDropdown appl={appl} />
         </div>
-        <p className="line-clamp-2 text-sm text-gray-500">
+        <p className="line-clamp-2 text-sm break-all whitespace-pre-line text-gray-500">
           {renderTextWithLinks(appl.notes)}
         </p>
         <Dialog>
@@ -54,11 +54,13 @@ function ApplicationCard({ appl }: { appl: Application }) {
             <div className="grid gap-4 md:grid-cols-2">
               <div>
                 <p className="text-sm text-gray-500">Company</p>
-                <p className="text-lg font-semibold">{appl.companyName}</p>
+                <p className="text-lg font-semibold break-all">
+                  {appl.companyName}
+                </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Position</p>
-                <p className="text-lg">{appl.position}</p>
+                <p className="text-lg break-all">{appl.position}</p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Status</p>
@@ -78,7 +80,7 @@ function ApplicationCard({ appl }: { appl: Application }) {
 
               <div className="md:col-span-2">
                 <p className="mb-2 text-sm text-gray-500">Notes</p>
-                <p className="rounded-lg bg-gray-100 p-4 text-sm">
+                <p className="rounded-lg bg-gray-100 p-4 text-sm break-all whitespace-pre-line">
                   {renderTextWithLinks(appl.notes)}
                 </p>
               </div>

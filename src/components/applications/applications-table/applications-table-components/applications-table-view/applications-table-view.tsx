@@ -31,10 +31,10 @@ function ApplicationsTableView({
         <TableBody>
           {applications.map((appl) => (
             <TableRow key={appl.id}>
-              <TableCell className="p-4 font-medium whitespace-break-spaces">
+              <TableCell className="max-w-28 overflow-hidden p-4 font-medium text-ellipsis">
                 {appl.companyName}
               </TableCell>
-              <TableCell className="p-4 whitespace-break-spaces">
+              <TableCell className="max-w-28 overflow-hidden p-4 text-ellipsis">
                 {appl.position}
               </TableCell>
               <TableCell className="p-4">

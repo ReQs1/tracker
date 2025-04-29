@@ -9,8 +9,10 @@ WiP
 - [ X ] change status via status button
 - [ X ] add desktop table with applications
 - [ X ] add applications-table-components component with match media hook to render applications based on view port
-- [ ? ] add desktop pagination & component to render based on view port
 - [ X ] add link detection in notes so it renders as link
+- [ X ] make Company Name and Position shorter/show max 25 characters
+
+- [ ? ] add desktop pagination & component to render based on view port
 
 ## overview
 

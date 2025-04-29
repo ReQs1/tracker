@@ -20,8 +20,8 @@ function ApplicationDetailsModal({
   status: string;
   date: Date;
   notes: string;
-  isOpen: boolean;
-  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen?: boolean;
+  onOpenChange?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -32,11 +32,11 @@ function ApplicationDetailsModal({
         <div className="grid gap-4 md:grid-cols-2">
           <div>
             <p className="text-sm text-gray-500">Company</p>
-            <p className="text-lg font-semibold">{companyName}</p>
+            <p className="text-lg font-semibold break-all">{companyName}</p>
           </div>
           <div>
             <p className="text-sm text-gray-500">Position</p>
-            <p className="text-lg">{position}</p>
+            <p className="break-all">{position}</p>
           </div>
           <div>
             <p className="text-sm text-gray-500">Status</p>
@@ -56,7 +56,7 @@ function ApplicationDetailsModal({
 
           <div className="md:col-span-2">
             <p className="mb-2 text-sm text-gray-500">Notes</p>
-            <p className="rounded-lg bg-gray-100 p-4 text-sm">
+            <p className="rounded-lg bg-gray-100 p-4 text-sm break-all whitespace-pre-line">
               {renderTextWithLinks(notes)}
             </p>
           </div>

@@ -9,8 +9,12 @@ export default function CardHeader({
 }) {
   return (
     <div>
-      <CardTitle className="text-lg">{companyName}</CardTitle>
-      <CardDescription className="text-base">{position}</CardDescription>
+      <CardTitle className="line-clamp-1 text-lg break-all">
+        {companyName}
+      </CardTitle>
+      <CardDescription className="line-clamp-1 text-base break-all">
+        {position}
+      </CardDescription>
     </div>
   );
 }
