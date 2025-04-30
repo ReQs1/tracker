@@ -1,18 +1,6 @@
-import MenuDropdown from "@/components/applications/menu-dropdown/card-menu-dropdown";
-import StatusDropdown from "@/components/applications/status-dropdown/status-dropdown";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { STATUS_OPTIONS } from "@/constants/status-options";
 import { auth } from "@/lib/auth";
 import { getApplications } from "@/lib/fetches/get-applications";
-import { cn, getStatusColor } from "@/lib/utils";
-import { Calendar } from "lucide-react";
 import { headers } from "next/headers";
 import ApplicationsTableComponents from "./applications-table-components/applications-table-components";
 

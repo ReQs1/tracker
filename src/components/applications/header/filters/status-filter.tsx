@@ -5,7 +5,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -21,7 +20,10 @@ export default function StatusFilter() {
   return (
     <div className="mb-4 grid gap-2">
       <p className="text-base font-semibold">Status</p>
-      <Select onValueChange={(e) => handleChangeParams("status", e)}>
+      <Select
+        onValueChange={(e) => handleChangeParams("status", e)}
+        value={status || ""}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="All statuses" />
         </SelectTrigger>

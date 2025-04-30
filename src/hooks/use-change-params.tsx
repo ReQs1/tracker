@@ -10,7 +10,7 @@ export function useChangeParams<T>() {
     params.set("page", "1");
     if (value) {
       if (value instanceof Date) {
-        params.set(param, value.toISOString());
+        params.set(param, value.toLocaleDateString());
       } else {
         params.set(param, String(value));
       }

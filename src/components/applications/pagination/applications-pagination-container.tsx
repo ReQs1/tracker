@@ -1,8 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { ITEMS_PER_PAGE } from "@/constants/constants";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ApplicationsMobilePagination from "./applications-pagination-components";
 
@@ -17,16 +15,16 @@ function ApplicationsPaginationContainer({
   totalApplications,
   totalPages,
 }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   if (totalPages === 0) {
     return null;
   }
 
   const firstItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
   const lastItem = Math.min(currentPage * ITEMS_PER_PAGE, totalApplications);
-
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const handlePageChange = (newPage: number) => {
     const params = new URLSearchParams(searchParams);
