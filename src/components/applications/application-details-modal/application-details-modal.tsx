@@ -20,8 +20,8 @@ function ApplicationDetailsModal({
   status: string;
   date: Date;
   notes: string;
-  isOpen?: boolean;
-  onOpenChange?: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
+  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
