@@ -76,11 +76,11 @@ function MenuDropdown({
           {/* DELETE MODAL TRIGGER*/}
           <DropdownMenuItem
             onClick={() => setIsDeleteModalOpen(true)}
-            className="w-full p-0"
+            className="w-full p-0 focus:bg-red-50"
           >
             <Button
-              variant="outline"
-              className="w-full cursor-pointer justify-start border-0 text-red-500 hover:text-red-500"
+              variant="ghost"
+              className="w-full cursor-pointer justify-start border-0 text-red-500 hover:bg-red-50 hover:text-red-500"
             >
               <Trash size={16} color="#fb2c36" /> <span>Delete</span>
             </Button>
