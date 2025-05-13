@@ -1,6 +1,6 @@
 import { STATUS_OPTIONS } from "@/constants/status-options";
 import { auth } from "@/lib/auth";
-import { getApplications } from "@/lib/fetches/get-applications";
+import { getApplications } from "@/services/get-applications";
 import { headers } from "next/headers";
 import ApplicationsTableComponents from "./applications-table-components/applications-table-components";
 

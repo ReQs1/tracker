@@ -42,3 +42,11 @@ export const renderTextWithLinks = (text: string) => {
     return <React.Fragment key={index}>{part}</React.Fragment>;
   });
 };
+
+export function formatOverviewDifference(count: number, percentage: boolean) {
+  if (percentage) {
+    return count >= 0 ? `+${count.toFixed(0)}%` : `${count.toFixed(0)}%`;
+  }
+
+  return count >= 0 ? `+${count}` : `${count}`;
+}
