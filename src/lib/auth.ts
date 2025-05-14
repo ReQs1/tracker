@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "@/db/drizzle"; // your drizzle instance
+import { db } from "@/db/drizzle";
 import * as schema from "@/db/schema";
 
 export const auth = betterAuth({
@@ -14,5 +14,4 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
   },
-  trustedOrigins: ["http://localhost:3000"],
 });
