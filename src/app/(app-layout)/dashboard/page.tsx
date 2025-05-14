@@ -1,9 +1,10 @@
 import DashboardHeader from "@/components/dashboard/dashboard-header";
+import OverviewCardsSkeleton from "@/components/dashboard/overview/overview-cards-skeleton";
 import OverviewContainer from "@/components/dashboard/overview/overview-container";
 import RecentActivityCards from "@/components/dashboard/recent-activity/recent-activity-cards";
+import RecentActivityCardsSkeleton from "@/components/dashboard/recent-activity/recent-activity-cards-skeleton";
 import RecentActivityHeader from "@/components/dashboard/recent-activity/recent-activity-header";
 import DashboardWrapper from "@/components/ui/dashboard-wrapper";
-import { Skeleton } from "@/components/ui/skeleton";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -30,20 +31,11 @@ async function DashboardPage() {
 
       <RecentActivityHeader />
 
-      <RecentActivityCards />
+      <Suspense fallback={<RecentActivityCardsSkeleton />}>
+        <RecentActivityCards userId={user.id} />
+      </Suspense>
     </DashboardWrapper>
   );
 }
 
 export default DashboardPage;
-
-function OverviewCardsSkeleton() {
-  return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Skeleton className="h-[144px]" />
-      <Skeleton className="h-[144px]" />
-      <Skeleton className="h-[144px]" />
-      <Skeleton className="h-[144px]" />
-    </div>
-  );
-}

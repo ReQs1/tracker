@@ -14,6 +14,7 @@ export const application = pgTable("application", {
   position: text("position").notNull(),
   status: text("status").notNull(),
   date: date("date").notNull().defaultNow(),
+  created_at: date("created_at").notNull().defaultNow(),
   notes: text("notes").notNull(),
   userId: text("user_id")
     .notNull()
