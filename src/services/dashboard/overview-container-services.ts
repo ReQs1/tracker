@@ -1,6 +1,6 @@
 import { db } from "@/db/drizzle";
 import { application } from "@/db/schema";
-import { and, count, eq, gte, lte, ne } from "drizzle-orm";
+import { and, count, eq, gte, lte, ne, or } from "drizzle-orm";
 
 const formatDate = (date: Date) => date.toISOString().split("T")[0];
 
@@ -100,8 +100,8 @@ export const getWeeklyApplicationsDifference = async (userId: string) => {
     .where(
       and(
         eq(application.userId, userId),
-        gte(application.date, currentWeekMonday),
-        lte(application.date, currentWeekSunday),
+        gte(application.created_at, currentWeekMonday),
+        lte(application.created_at, currentWeekSunday),
       ),
     );
   const currentWeekCount = currentWeekData[0].count;
@@ -112,8 +112,8 @@ export const getWeeklyApplicationsDifference = async (userId: string) => {
     .where(
       and(
         eq(application.userId, userId),
-        gte(application.date, lastWeekMonday),
-        lte(application.date, lastWeekSunday),
+        gte(application.created_at, lastWeekMonday),
+        lte(application.created_at, lastWeekSunday),
       ),
     );
   const lastWeekCount = lastWeekData[0].count;
@@ -248,7 +248,13 @@ export const getPendingApplicationsCount = async (userId: string) => {
     .select({ count: count() })
     .from(application)
     .where(
-      and(eq(application.userId, userId), eq(application.status, "applied")),
+      and(
+        eq(application.userId, userId),
+        or(
+          eq(application.status, "applied"),
+          eq(application.status, "interview"),
+        ),
+      ),
     );
 
   return pendingApplicationsCount[0].count;
