@@ -66,7 +66,7 @@ async function OverviewContainer({ userId }: { userId: string }) {
         Icon={Loader}
         iconColor="#64748b"
         data={pendingApplicationsCount.toString()}
-        subParagraph="Awaiting response"
+        subParagraph="Applications in progress"
       />
     </div>
   );
