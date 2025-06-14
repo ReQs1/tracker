@@ -14,7 +14,10 @@ function LogOutButton() {
       onClick={async () =>
         await authClient.signOut({
           fetchOptions: {
-            onSuccess: () => router.push("/login"),
+            onSuccess: () => {
+              router.push("/login");
+              router.refresh();
+            },
           },
         })
       }
