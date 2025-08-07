@@ -52,7 +52,7 @@ async function ApplicationsPage(props: {
       <Suspense
         key={query + from + to + status + page}
         fallback={
-          <div className="flex grow items-center justify-center">
+          <div className="flex max-h-[537px] grow items-center justify-center">
             <div className="border-primary h-16 w-16 animate-spin rounded-full border-t-2 border-b-2"></div>
           </div>
         }
