@@ -31,7 +31,7 @@ async function RecentActivityCards({ userId }: { userId: string }) {
             Your scheduled interviews
           </CardTitle>
         </CardHeader>
-        <CardContent className="h-[104px] overflow-y-scroll">
+        <CardContent className="h-[104px] overflow-y-auto">
           <div className="grid gap-4">
             {upcomingInterviews.length === 0 ? (
               <p className="text-sm text-gray-500">
@@ -79,7 +79,7 @@ async function RecentActivityCards({ userId }: { userId: string }) {
             Your latest job applications
           </CardTitle>
         </CardHeader>
-        <CardContent className="h-[104px] overflow-y-scroll">
+        <CardContent className="h-[104px] overflow-y-auto">
           <div className="grid gap-4">
             {recentApplications.length === 0 ? (
               <p className="text-sm text-gray-500">

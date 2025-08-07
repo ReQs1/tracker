@@ -1,4 +1,6 @@
 import AddApplicationModal from "@/components/applications/add-application-modal/add-application-modal";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import ApplicationsHeaderFilters from "./applications-header-filters";
 
 function ApplicationsHeader() {
@@ -11,7 +13,14 @@ function ApplicationsHeader() {
             Track and manage your job applications
           </p>
         </div>
-        <AddApplicationModal />
+        <div className="flex items-center gap-2">
+          <Link href="/dashboard">
+            <Button className="cursor-pointer" variant="outline">
+              Go to Dashboard
+            </Button>
+          </Link>
+          <AddApplicationModal />
+        </div>
       </div>
 
       <ApplicationsHeaderFilters />
