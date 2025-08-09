@@ -6,7 +6,7 @@ import { ITEMS_PER_PAGE } from "@/constants/constants";
 import { db } from "@/db/drizzle";
 import { application } from "@/db/schema";
 import { auth } from "@/lib/auth";
-import { count, eq } from "drizzle-orm";
+import { and, count, eq, gte, ilike, lte, or } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
@@ -40,7 +40,18 @@ async function ApplicationsPage(props: {
   const [usersApplicationsCount] = await db
     .select({ count: count() })
     .from(application)
-    .where(eq(application.userId, id));
+    .where(
+      and(
+        eq(application.userId, id),
+        or(
+          ilike(application.companyName, `%${query}%`),
+          ilike(application.position, `%${query}%`),
+        ),
+        status ? eq(application.status, status) : undefined,
+        from ? gte(application.date, from) : undefined,
+        to ? lte(application.date, to) : undefined,
+      ),
+    );
 
   const totalApplications = usersApplicationsCount.count;
 
